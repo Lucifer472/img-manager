@@ -14,7 +14,7 @@ export const Carosal = ({ imageData }: CarosalProps) => {
             key={index}
           >
             <Image
-              src={`/i/blogs/${img}`}
+              src={`https://img.missiongujarat.in/i/blogs/${img}`}
               alt="Image"
               fill
               style={{ objectFit: "cover" }}
