@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import Loader from "@/components/loader";
 
 import { uploadImage } from "@/actions/upload";
+import { cn } from "@/lib/utils";
 
 export const ImageForm = () => {
   const [file, setFile] = useState<any>(null);
@@ -35,7 +36,7 @@ export const ImageForm = () => {
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
     startTransition(() => {
-      uploadImage(formData).then((res) => {
+      uploadImage(formData, "blogs").then((res) => {
         if (res?.error) {
           toast.error(res.error);
         }
@@ -57,7 +58,9 @@ export const ImageForm = () => {
           className="max-w-[180px] flex flex-col items-center justify-center gap-y-4"
         >
           <label htmlFor="imgUpload">
-            <UploadIcon className="w-8 h-8" />
+            <UploadIcon
+              className={cn("w-8 h-8 ", file ? "opacity-50" : "opacity-100")}
+            />
           </label>
           <Input
             disabled={isPending}
@@ -73,7 +76,7 @@ export const ImageForm = () => {
             type="submit"
             size={"sm"}
             variant={"secondary"}
-            className="hover:bg-sky-400"
+            className={cn("hover:bg-sky-400", file ? "block" : "hidden")}
           >
             Upload Image
           </Button>

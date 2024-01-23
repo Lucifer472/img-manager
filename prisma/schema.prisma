@@ -28,3 +28,9 @@ model verifyEmail {
 
   @@unique([email,token])
 }
+
+model img {
+  id      Int   @id @default(autoincrement())
+  name    String @unique
+  folder  String
+}

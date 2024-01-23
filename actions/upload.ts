@@ -1,20 +1,18 @@
 "use server";
 
 import fs from "fs";
-import { fetchImages } from "./fetch";
+import { createImg, findImage } from "@/lib/img";
 
-export const uploadImage = async (data: any) => {
+export const uploadImage = async (data: FormData, folder: string) => {
   const file: any = data.get("img");
   if (file === null) {
     return { error: "No File Found!" };
   }
 
   const filename = file.name;
-  const filePath = "public/blogs/" + filename;
+  const filePath = "public/" + folder + "/" + filename;
 
-  const files = await fetchImages("public/blogs");
-
-  const isMatch = files.includes(filename);
+  const isMatch = await findImage(filename);
 
   if (isMatch) return { error: "File Alredy Exists" };
 
@@ -28,8 +26,13 @@ export const uploadImage = async (data: any) => {
         writeStream.write(chunk);
       }
       writeStream.end();
+
+      const img = await createImg(filename, "blogs");
+      if (img.error) return { error: "Something Went Wrong!" };
+      return { succes: "File Uploaded Succesfully" };
     }
-    return { succes: "File Uploaded Succesfully" };
+
+    return { error: "Something Went Wrong!" };
   } catch (error) {
     return { error: "Something Went Wrong!" };
   }
