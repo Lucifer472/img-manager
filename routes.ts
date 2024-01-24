@@ -10,6 +10,6 @@ export const publicRoutes = ["/", "/verify"];
  * @type {string}
  */
 
-export const apiPrefix = "/api/auth";
+export const apiPrefix = "/api/";
 
 export const DEFAULT_LOGIN_RED = "/images";

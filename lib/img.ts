@@ -15,6 +15,20 @@ export const createImg = async (name: string, folder: string) => {
   }
 };
 
+export const removeImg = async (id: number) => {
+  try {
+    await db.img.delete({
+      where: {
+        id,
+      },
+    });
+
+    return true;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const readImages = async (folder: string, skip: number) => {
   try {
     const data = await db.img.findMany({

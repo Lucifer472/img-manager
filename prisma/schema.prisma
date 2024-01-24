@@ -34,3 +34,7 @@ model img {
   name    String @unique
   folder  String
 }
+
+model websites {
+  websites  String @id
+}
