@@ -48,7 +48,7 @@ export const ImageForm = () => {
         }
       });
 
-      // fetch("https://img.missiongujarat.in", {
+      // fetch("https://img.missiongujarat.in/api/upload", {
       //   method: "POST",
       //   body: formData,
       // });
