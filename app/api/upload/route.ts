@@ -63,7 +63,12 @@ export async function POST(req: Request) {
       writeStream.end();
 
       const img = await createImg(filename, "blogs");
-      if (img.error) return { error: "Something Went Wrong!" };
+      if (img.error) {
+        return new Response("Something Went Wrong!", {
+          status: 400,
+          headers: corsHead,
+        });
+      }
       return new Response("File Uploaded Succesfully", {
         status: 200,
         headers: corsHead,
