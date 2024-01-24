@@ -1,6 +1,5 @@
 "use server";
 
-import path from "path";
 import fs from "fs";
 import { removeImg } from "@/lib/img";
 
@@ -10,7 +9,7 @@ export const deleteImage = async (
   imgName: string
 ) => {
   try {
-    const filePath = path.join(`public/${folder}/`, imgName);
+    const filePath = `public/${folder}/` + imgName;
     fs.unlinkSync(filePath);
 
     const isRemoved = await removeImg(id);
