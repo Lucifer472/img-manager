@@ -27,6 +27,7 @@ export const ImageForm = () => {
 
   useEffect(() => {
     formData.append("img", file);
+    formData.append("folder", "blogs");
   }, [file, formData]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +47,11 @@ export const ImageForm = () => {
           router.refresh();
         }
       });
+
+      // fetch("https://img.missiongujarat.in", {
+      //   method: "POST",
+      //   body: formData,
+      // });
     });
   };
 
