@@ -3,7 +3,6 @@ import NextAuth from "next-auth";
 import authConfig from "@/auth.config";
 
 import { DEFAULT_LOGIN_RED, apiPrefix, publicRoutes } from "@/routes";
-import { websites } from "@/constant";
 
 const { auth } = NextAuth(authConfig);
 
@@ -15,9 +14,7 @@ export default auth(async (req) => {
   const isApiRoute = nextUrl.pathname.startsWith(apiPrefix);
 
   if (isApiRoute) {
-    websites.map((w) => {
-      res.headers.append("Access-Control-Allow-Origin", w);
-    });
+    res.headers.append("Access-Control-Allow-Origin", "*");
     res.headers.append("Access-Control-Allow-Credentials", "true");
     res.headers.append(
       "Access-Control-Allow-Methods",
