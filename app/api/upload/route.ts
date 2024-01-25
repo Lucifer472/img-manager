@@ -46,9 +46,12 @@ export async function POST(req: Request) {
           status: 400,
         });
       }
-      return new Response("File Uploaded Succesfully", {
-        status: 200,
-      });
+      return new Response(
+        `https://img.missiongujarat.in/i/${folder}/${filename}`,
+        {
+          status: 200,
+        }
+      );
     }
 
     return new Response("Error", { status: 500 });
