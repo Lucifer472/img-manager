@@ -20,15 +20,17 @@ export async function POST(req: Request) {
       });
     }
 
-    const filename = file.name;
+    const timeM = new Date().getTime();
+    const filename = timeM.toString() + file.name;
     const filePath = "public/" + folder + "/" + filename;
 
     const isMatch = await findImage(filename);
 
-    if (isMatch)
+    if (isMatch) {
       return new Response("File Alredy Exist", {
         status: 400,
       });
+    }
 
     if (file instanceof Blob) {
       // Convert file to stream
@@ -54,8 +56,8 @@ export async function POST(req: Request) {
       );
     }
 
-    return new Response("Error", { status: 500 });
+    return new Response("File Upload Failed", { status: 500 });
   } catch (error) {
-    return new Response("Error", { status: 500 });
+    return new Response(`Something Went Wrong`, { status: 500 });
   }
 }
