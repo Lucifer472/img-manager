@@ -37,21 +37,21 @@ export const ImageForm = () => {
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
     startTransition(() => {
-      // uploadImage(formData, "blogs").then((res) => {
-      //   if (res?.error) {
-      //     toast.error(res.error);
-      //   }
+      uploadImage(formData, "blogs").then((res) => {
+        if (res?.error) {
+          toast.error(res.error);
+        }
 
-      //   if (res?.succes) {
-      //     toast.success(res.succes);
-      //     router.refresh();
-      //   }
-      // });
-
-      fetch("https://img.missiongujarat.in/api/upload", {
-        method: "POST",
-        body: formData,
+        if (res?.succes) {
+          toast.success(res.succes);
+          router.refresh();
+        }
       });
+
+      // fetch("https://img.missiongujarat.in/api/upload", {
+      //   method: "POST",
+      //   body: formData,
+      // });
     });
   };
 

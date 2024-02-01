@@ -20,3 +20,9 @@ export const RegisterSchema = z.object({
 export const imageSchema = z.object({
   img: z.any(),
 });
+
+export const frameSchema = z.object({
+  name: z.string().min(6, { message: "minimum 6 latters required" }),
+  desc: z.string().min(12, { message: "minimum 6 latters required" }),
+  img: z.string().min(1),
+});

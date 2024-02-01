@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       }
       writeStream.end();
 
-      const img = await createImg(filename, "blogs");
+      const img = await createImg(filename, folder);
       if (img.error) {
         return new Response("Something Went Wrong!", {
           status: 400,
