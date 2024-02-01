@@ -21,6 +21,7 @@ import { useEffect, useMemo, useState, useTransition } from "react";
 import { uploadImage } from "@/actions/upload";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { createFrames } from "@/actions/frame";
 
 const FrameForm = () => {
   const [img, setImg] = useState<string>("/upload.jpg");
@@ -51,17 +52,19 @@ const FrameForm = () => {
 
   useEffect(() => {
     startTransition(() => {
-      uploadImage(formData, "frames").then((res) => {
-        if (res?.error) {
-          toast.error(res.error);
-        }
+      if (formData.get("img") !== "null") {
+        uploadImage(formData, "frames").then((res) => {
+          if (res?.error) {
+            toast.error(res.error);
+          }
 
-        if (res?.succes) {
-          toast.success(res.succes);
-          setImg(`https://img.missiongujarat.in/i/frames/${file.name}`);
-          router.refresh();
-        }
-      });
+          if (res?.succes) {
+            toast.success(res.succes);
+            setImg(`https://img.missiongujarat.in/i/frames/${file.name}`);
+            router.refresh();
+          }
+        });
+      }
     });
   }, [file, formData, router]);
 
@@ -69,8 +72,10 @@ const FrameForm = () => {
     form.setValue("img", img);
   }, [img, form]);
 
-  const frameSubmit = async (values: z.infer<typeof frameSchema>) => {
+  const frameSubmit = (values: z.infer<typeof frameSchema>) => {
     console.log(values);
+
+    createFrames(values);
   };
 
   return (
