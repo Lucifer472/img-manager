@@ -29,7 +29,8 @@ yarn-error.log*
 .env*.local
 .env
 
-/public
+/public/blogs
+/public/frames
 
 # vercel
 .vercel
