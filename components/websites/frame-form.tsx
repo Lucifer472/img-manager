@@ -53,15 +53,26 @@ const FrameForm = () => {
   useEffect(() => {
     startTransition(() => {
       if (formData.get("img") !== "null") {
-        uploadImage(formData, "frames").then((res) => {
-          if (res?.error) {
-            toast.error(res.error);
-          }
+        // uploadImage(formData, "frames").then((res) => {
+        //   if (res?.error) {
+        //     toast.error(res.error);
+        //   }
 
-          if (res?.succes) {
-            toast.success(res.succes);
-            setImg(`https://img.missiongujarat.in/i/frames/${file.name}`);
-            router.refresh();
+        //   if (res?.succes) {
+        //     toast.success(res.succes);
+        //     setImg(`https://img.missiongujarat.in/i/frames/${file.name}`);
+        //     router.refresh();
+        //   }
+        // });
+
+        fetch("https://img.missiongujarat.in/api/upload", {
+          method: "POST",
+          body: formData,
+        }).then((res) => {
+          if (res.status === 200) {
+            console.log(res);
+          } else {
+            console.log(res);
           }
         });
       }

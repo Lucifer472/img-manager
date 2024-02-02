@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import NextAuth from "next-auth";
+import NextCors from "nextjs-cors";
+
 import authConfig from "@/auth.config";
 
 import { DEFAULT_LOGIN_RED, apiPrefix, publicRoutes } from "@/routes";

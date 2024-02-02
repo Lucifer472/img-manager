@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
       const img = await createImg(filename, folder);
       if (img.error) {
-        return new Response("Something Went Wrong!", {
+        return new Response("DB Failed!", {
           status: 400,
         });
       }
