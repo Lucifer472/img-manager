@@ -27,7 +27,7 @@ export const uploadImage = async (data: FormData, folder: string) => {
       }
       writeStream.end();
 
-      const img = await createImg(filename, "blogs");
+      const img = await createImg(filename, folder);
       if (img.error) return { error: "Something Went Wrong!" };
       return { succes: "File Uploaded Succesfully" };
     }
