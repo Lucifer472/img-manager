@@ -12,7 +12,7 @@ import Loader from "@/components/loader";
 import { uploadImage } from "@/actions/upload";
 import { cn } from "@/lib/utils";
 
-export const ImageForm = () => {
+const ImageForm = () => {
   const [file, setFile] = useState<any>(null);
 
   const [isPending, startTransition] = useTransition();
@@ -91,3 +91,5 @@ export const ImageForm = () => {
     </div>
   );
 };
+
+export default ImageForm;
