@@ -30,7 +30,7 @@ export const createFrames = async (v: z.infer<typeof frameSchema>) => {
     // Perform your database query
     const results = await connection.query(
       `INSERT INTO frames.Frames (id, img, name, "desc", supporter, userId) VALUES (?, ?, ?, ?, ?, ?)`,
-      [id, v.img, v.name, v.desc, 0, "clryj1bly000009l52u1kgneg"]
+      [id, v.img, v.name, v.desc, 0, "cls5ze66n0000sehi62wz3ju0"]
     );
 
     // console.log("The solution is: ", results);
